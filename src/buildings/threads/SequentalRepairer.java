@@ -15,7 +15,7 @@ public class SequentalRepairer implements Runnable{
     public void run(){
         for (int i = 0; i <floor.getCnt() ; i++) {
             try{
-            System.out.format("Repairing space number %d with total area %.2f square meters",i, floor.getSpace(i));
+            System.out.printf("Repairing space number %d with total area %.2f square meters \n",i, floor.getSpace(i).getArea());
             semaphore.enter();
             Thread.sleep(150);
             }

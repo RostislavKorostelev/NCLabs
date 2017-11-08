@@ -7,8 +7,7 @@ import buildings.dwelling.hotel.HotelFloor;
 import buildings.office.Office;
 import buildings.office.OfficeBuilding;
 import buildings.office.OfficeFloor;
-import buildings.threads.Cleaner;
-import buildings.threads.Repairer;
+import buildings.threads.*;
 
 public class Main {
 	public static void main(String [] argv)
@@ -88,11 +87,13 @@ public class Main {
 
 
 		System.out.println(f.equals(ff));
-
-		Repairer r = new Repairer(ff);
-		r.start();
-		Cleaner c = new Cleaner(ff);
-		c.start();
+        Semaphore s = new Semaphore();
+		SequentalRepairer r = new SequentalRepairer(ff,s);
+        Thread t = new Thread(r);
+        t.start();
+		SequentalCleaner c = new SequentalCleaner(ff,s);
+        Thread t1 = new Thread(c);
+        t1.start();
 
 	}
 }

@@ -10,7 +10,8 @@ public class Repairer extends Thread{
         this.floor=floor;
     }
 
-    public void repair(){
+    @Override
+    public void run(){
         for (int i = 0; i <floor.getCnt() ; i++) {
             System.out.format("Repairing space number %d with total area %.2f square meters \n", i, floor.getSpace(i).getArea());
 

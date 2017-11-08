@@ -7,6 +7,7 @@ import buildings.dwelling.hotel.HotelFloor;
 import buildings.office.Office;
 import buildings.office.OfficeBuilding;
 import buildings.office.OfficeFloor;
+import buildings.threads.Cleaner;
 import buildings.threads.Repairer;
 
 public class Main {
@@ -82,14 +83,16 @@ public class Main {
 
 
 		Hotel hhf = new Hotel(4,1,2,3,4);
-		HotelFloor ff = new HotelFloor(2);
+		HotelFloor ff = new HotelFloor(5);
 		ff.setStars(4);
 
 
 		System.out.println(f.equals(ff));
 
 		Repairer r = new Repairer(ff);
-		r.repair();
+		r.start();
+		Cleaner c = new Cleaner(ff);
+		c.start();
 
 	}
 }

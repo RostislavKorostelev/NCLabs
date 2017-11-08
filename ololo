@@ -1,0 +1,15 @@
+Задание 5
+Создайте интерфейс BuildingFactory, содержащий методы:
+•	public Space createSpace(double area)
+•	public Space createSpace(int roomsCount, double area)
+•	public Floor createFloor(int spacesCount)
+•	public Floor createFloor(Space[] spaces)
+•	public Building createBuilding(int floorsCount, int[] spacesCounts)
+•	public Building createBuilding(Floor[] floors)
+Задание 6
+Создайте классы конкретных фабрик DwellingFactory, OfficeFactory, HotelFactory, реализующие интерфейс BuildingFactory и создающие объекты соответствующих типов.
+Задание 7
+В классе Buildings создайте статическое поле типа BuildingFactory и метод setBuildingFactory, позволяющие, соответственно, хранить ссылку и устанавливать ссылку на текущую конкретную фабрику.
+По умолчанию поле должно ссылаться на объект, порождающий экземпляры класса Dwelling и связанных с ним классов.
+Задание 8
+В классе Buildings реализуйте статические методы, которые с помощью текущей фабрики создают новые экземпляры соответствующих объектов. В остальных методах класса Buildings замените прямое создание экземпляров объектов на вызов методов фабрики.

@@ -202,8 +202,8 @@ public class Buildings {
         return buildingFactory.createFloor(spaces);
     }
 
-    Floor synchronizedFloor (Space...spaces){
-        return new SynchronizedFloor(spaces);
+    Floor synchronizedFloor (Floor floor){
+        return new SynchronizedFloor(floor);
 
     }
 

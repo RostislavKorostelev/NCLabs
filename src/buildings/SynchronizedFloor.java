@@ -8,8 +8,8 @@ public class SynchronizedFloor implements Floor {
 
     private Space spaces[];
 
-    public SynchronizedFloor(Space...spaces) {
-        this.spaces = spaces;
+    public SynchronizedFloor(Floor floor) {
+        this.spaces = floor.getSpaces();
     }
 
     @Override
@@ -148,6 +148,6 @@ public class SynchronizedFloor implements Floor {
 
     @Override
     public Iterator iterator(){
-        return new SpaceIterator(new SynchronizedFloor(getSpaces()));
+        return new SpaceIterator(new SynchronizedFloor(this));
     }
 }

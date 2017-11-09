@@ -95,6 +95,13 @@ public class Main {
         Thread t1 = new Thread(c);
         t1.start();
 
+
+//		System.out.println("test");
+//		Buildings building = new Buildings();
+//		Floor floor = building.synchronizedFloor(f1);
+//		for (Space space:floor) {
+//			System.out.println(space);
+//		}
 	}
 
 }

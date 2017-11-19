@@ -4,7 +4,7 @@ public class Semaphore {
 
     private boolean mark = false;
 
-    public synchronized void enter() throws InterruptedException{
+    public synchronized void take() throws InterruptedException{
         this.mark = true;
         this.notify();
     }

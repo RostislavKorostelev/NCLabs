@@ -1,5 +1,6 @@
 package buildings;
 
+import buildings.dwelling.Dwelling;
 import buildings.dwelling.DwellingFloor;
 import buildings.dwelling.Flat;
 import buildings.dwelling.hotel.Hotel;
@@ -8,6 +9,8 @@ import buildings.office.Office;
 import buildings.office.OfficeBuilding;
 import buildings.office.OfficeFloor;
 import buildings.threads.*;
+
+import java.io.*;
 
 public class Main {
 	public static void main(String [] argv)
@@ -50,34 +53,34 @@ public class Main {
 //
 		Office f4 = new Office(1,1);
 		System.out.println(f4);
-		try{
-			Office f5 = (Office)f4.clone();
-			System.out.println(f5);
-			f4.setArea(65);
-			System.out.println(f4);
-			System.out.println(f5);
-		}
-		catch (CloneNotSupportedException e) {
-			System.out.println("2213");
-		}
-
-
-		OfficeFloor f1 = new OfficeFloor(4);
-
-		System.out.println(f1.getCnt());
-		try{
-			OfficeFloor f2 = (OfficeFloor) f1.clone();
-			System.out.println(f1);
-			f1.setSpace(3, new Office(99,14));
-			System.out.println(f1);
-			System.out.println(f2);
-		}
-		catch (CloneNotSupportedException e){
-			System.out.println("2213");
-		}
-		Hotel hf = new Hotel(4,1,2,3,4);
-		HotelFloor f = new HotelFloor(2);
-		f.setStars(2);
+//		try{
+//			Office f5 = (Office)f4.clone();
+//			System.out.println(f5);
+//			f4.setArea(65);
+//			System.out.println(f4);
+//			System.out.println(f5);
+//		}
+//		catch (CloneNotSupportedException e) {
+//			System.out.println("2213");
+//		}
+//
+//
+//		OfficeFloor f1 = new OfficeFloor(4);
+//
+//		System.out.println(f1.getCnt());
+//		try{
+//			OfficeFloor f2 = (OfficeFloor) f1.clone();
+//			System.out.println(f1);
+//			f1.setSpace(3, new Office(99,14));
+//			System.out.println(f1);
+//			System.out.println(f2);
+//		}
+//		catch (CloneNotSupportedException e){
+//			System.out.println("2213");
+//		}
+//		Hotel hf = new Hotel(4,1,2,3,4);
+//		HotelFloor f = new HotelFloor(2);
+//		f.setStars(2);
 
 
 
@@ -86,14 +89,14 @@ public class Main {
 		ff.setStars(4);
 
 
-		System.out.println(f.equals(ff));
-        Semaphore s = new Semaphore();
-		SequentalRepairer r = new SequentalRepairer(ff,s);
-        Thread t = new Thread(r);
-        t.start();
-		SequentalCleaner c = new SequentalCleaner(ff,s);
-        Thread t1 = new Thread(c);
-        t1.start();
+//		System.out.println(f.equals(ff));
+//        Semaphore s = new Semaphore();
+//		SequentalRepairer r = new SequentalRepairer(ff,s);
+//        Thread t = new Thread(r);
+//        t.start();
+//		SequentalCleaner c = new SequentalCleaner(ff,s);
+//        Thread t1 = new Thread(c);
+//        t1.start();
 
 
 //		System.out.println("test");
@@ -102,6 +105,51 @@ public class Main {
 //		for (Space space:floor) {
 //			System.out.println(space);
 //		}
-	}
 
+
+		Dwelling dwelling = new Dwelling(3,1,2,3);
+		System.out.println(dwelling.getAreaSpaces());
+		try{
+			Buildings.outputBuilding(dwelling,new DataOutputStream(new FileOutputStream("buildings.bin")));
+		}
+		catch(FileNotFoundException e){
+			e.getMessage();
+		}
+		catch(IOException e1){
+			e1.getMessage();
+		}
+		try {
+			DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream("type.bin"));
+			dataOutputStream.writeInt(0);
+
+			dataOutputStream.close();
+		}
+
+		catch (IOException e){
+			e.getMessage();
+		}
+
+
+		try{
+			Buildings.serializeBuilding(dwelling,new FileOutputStream("buildingsSer.bin"));
+		}
+		catch(FileNotFoundException e){
+			e.getMessage();
+		}
+		catch(IOException e1){
+			e1.getMessage();
+		}
+		try {
+			ObjectOutputStream dataOutputStream = new ObjectOutputStream(new FileOutputStream("typeSer.bin"));
+			dataOutputStream.writeInt(0);
+
+			dataOutputStream.close();
+		}
+
+		catch (IOException e){
+			e.getMessage();
+		}
+
+
+	}
 }

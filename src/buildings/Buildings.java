@@ -1,7 +1,10 @@
 package buildings;
 
-import buildings.dwelling.Dwelling;
-import buildings.dwelling.DwellingFloor;
+import buildings.factories.DwellingFactory;
+import buildings.interfaces.Building;
+import buildings.interfaces.BuildingFactory;
+import buildings.interfaces.Floor;
+import buildings.interfaces.Space;
 
 import java.io.*;
 import java.util.Comparator;
@@ -50,7 +53,7 @@ public class Buildings {
                     floors[i].getSpace(j).setArea(streamRead.readFloat());
                 }
             }
-         newBuilding = createBuilding(buildingFactory,floors);
+         newBuilding = createBuilding(floors);
         }
         catch (IOException ioex)
         {
@@ -96,7 +99,7 @@ public class Buildings {
                     floors[i].getSpace(j).setArea((float)streamTokenizer.nval);
                 }
             }
-            newBuilding = Buildings.createBuilding(buildingFactory,floors);
+            newBuilding = Buildings.createBuilding(floors);
         }
         catch (IOException ioex){
             ioex.getMessage();
@@ -159,7 +162,7 @@ public class Buildings {
 
             }
         }
-        return Buildings.createBuilding(buildingFactory,floors);
+        return Buildings.createBuilding(floors);
     }
 
     public static <T extends Comparable<T>> void sort (T[] data){
@@ -191,18 +194,20 @@ public class Buildings {
         }
     }
 
-    public void setBuildingFactory(BuildingFactory buildingFactory){
+    public static void setBuildingFactory(BuildingFactory buildingFactory){
         Buildings.buildingFactory = buildingFactory;
     }
 
-    public static Building createBuilding(BuildingFactory buildingFactory, Floor[] floors){
+    public static Building createBuilding(Floor...floors){
         return buildingFactory.createBuilding(floors);
     }
-    public static Floor createFloor(BuildingFactory buildingFactory, Space[] spaces){
+
+    public static Floor createFloor(int spaceCount){ return buildingFactory.createFloor(spaceCount);}
+    public static Floor createFloor(Space...spaces){
         return buildingFactory.createFloor(spaces);
     }
 
-    Floor synchronizedFloor (Floor floor){
+    public static Floor synchronizedFloor (Floor floor){
         return new SynchronizedFloor(floor);
 
     }

@@ -1,5 +1,8 @@
 package buildings;
 
+import buildings.interfaces.Building;
+import buildings.interfaces.Floor;
+
 import java.util.Iterator;
 
 

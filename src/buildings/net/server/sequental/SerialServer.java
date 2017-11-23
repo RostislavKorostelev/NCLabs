@@ -1,6 +1,7 @@
 package buildings.net.server.sequental;
 
-import buildings.Building;
+import buildings.exceptions.BuildingUnderArrestException;
+import buildings.interfaces.Building;
 import buildings.Buildings;
 import buildings.dwelling.Dwelling;
 import buildings.dwelling.hotel.Hotel;
@@ -21,11 +22,10 @@ public class SerialServer {
             ObjectOutputStream out = new ObjectOutputStream(socketClient.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(socketClient.getInputStream());
             int type = in.readInt();
-            System.out.println(type);
             Thread.sleep(2000);
-            Building building = Buildings.inputBuilding(in);
+            Building building = Buildings.deserialaizeBuilding(in);
 
-
+            System.out.println(Cost(type ,building));
             out.writeFloat(Cost(type ,building));
             out.flush();
             in.close();
@@ -42,25 +42,31 @@ public class SerialServer {
 
     public static float Cost(int type, Building building) {
         double r = Math.random();
-        if (r>=0.9){
-
-            System.out.println("Building is under arrest ");
-        }
-        else{
+        try {
+            if (r > 0.9) {
+                throw new BuildingUnderArrestException("Building is under arrest ");
+            }
             float res = -1;
 
             if (type == 0) {
                 res = 1000 * ((Dwelling) building).getAreaSpaces();
+                return res;
             }
             if (type == 1) {
                 res = 1500 * ((OfficeBuilding) building).getAreaSpaces();
+                return res;
             }
             if (type == 2) {
                 res = 2000 * ((Hotel) building).getAreaSpaces();
+                return res;
             }
             System.out.println(res);
-            return res;
+
+
+            return -1;
         }
-        return -1;
+        catch (BuildingUnderArrestException e){
+            return -1;
+        }
     }
 }

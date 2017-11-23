@@ -1,7 +1,6 @@
 package buildings.threads;
 
-import buildings.Floor;
-import buildings.dwelling.DwellingFloor;
+import buildings.interfaces.Floor;
 
 public class Repairer extends Thread{
     private Floor floor;

@@ -1,4 +1,4 @@
-package buildings;
+package buildings.exceptions;
 
 public class BuildingUnderArrestException extends Exception {
 

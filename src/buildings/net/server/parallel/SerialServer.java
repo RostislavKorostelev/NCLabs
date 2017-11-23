@@ -16,7 +16,7 @@ public class SerialServer {
 
         while(!serverSocket.isClosed()) {
             Socket client = serverSocket.accept();
-            executorService.execute(new NewConnection(client));
+            executorService.execute(new NewConnectionSer(client));
             System.out.println("Client connected");
         }
         executorService.shutdown();

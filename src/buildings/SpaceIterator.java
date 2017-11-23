@@ -1,5 +1,8 @@
 package buildings;
 
+import buildings.interfaces.Floor;
+import buildings.interfaces.Space;
+
 import java.util.Iterator;
 
 public class SpaceIterator implements Iterator<Space>{

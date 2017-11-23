@@ -1,6 +1,9 @@
 package buildings;
 
 import buildings.dwelling.Flat;
+import buildings.exceptions.SpaceIndexOutOfBoundsException;
+import buildings.interfaces.Floor;
+import buildings.interfaces.Space;
 
 import java.util.Iterator;
 
@@ -57,7 +60,7 @@ public class SynchronizedFloor implements Floor {
     @Override
     public synchronized  void addSpace(int n, Space space) {
         {
-            if (n<0) throw new SpaceIndexOutOfBoundsException ("n should be positive!");
+            if (n<0) throw new SpaceIndexOutOfBoundsException("n should be positive!");
             if(n>spaces.length) {
                 Space tmp[]= new Space[n];
                 for(int i=0; i<spaces.length; i++)

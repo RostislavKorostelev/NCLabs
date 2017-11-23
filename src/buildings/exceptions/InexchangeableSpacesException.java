@@ -1,4 +1,4 @@
-package buildings;
+package buildings.exceptions;
 
 public class InexchangeableSpacesException extends Exception {
     public InexchangeableSpacesException() {}

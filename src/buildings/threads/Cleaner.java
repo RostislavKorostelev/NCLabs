@@ -1,6 +1,6 @@
 package buildings.threads;
 
-import buildings.Floor;
+import buildings.interfaces.Floor;
 
 public class Cleaner extends Thread{
         private Floor floor;

@@ -1,6 +1,6 @@
 package buildings.threads;
 
-import buildings.Floor;
+import buildings.interfaces.Floor;
 
 public class SequentalRepairer implements Runnable{
     private Floor floor;

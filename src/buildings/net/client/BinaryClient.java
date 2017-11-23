@@ -19,7 +19,7 @@ public class BinaryClient {
 
         DataInputStream in2 = new DataInputStream(new FileInputStream("type.bin"));
         int type = in2.readInt();
-        System.out.println(type);
+
         out.writeInt(type);
         in2.close();
         out.flush();
@@ -31,17 +31,18 @@ public class BinaryClient {
         Thread.sleep(3000);
 
         float cost = in.readFloat();
-        System.out.println("Building costs "+ cost);
 
-        Thread.sleep(1000);
-
-        try{
-            PrintWriter pw = new PrintWriter(new FileOutputStream("result.txt"));
-            pw.print(cost);
-            pw.close();
+        if (cost != -1){
+            System.out.println("Building costs "+ cost);
+            PrintWriter printWriter = new PrintWriter(new FileOutputStream("results.txt"));
+            printWriter.print(cost);
+            printWriter.close();
         }
-        catch (IOException e){
-            e.getMessage();
+
+        else {
+            System.out.println("Building is under arrest");
+            PrintWriter printWriter = new PrintWriter(new FileOutputStream("results.txt"));
+            printWriter.print("Building is under arrest");
         }
 
 

@@ -5,10 +5,10 @@ import buildings.dwelling.DwellingFloor;
 import buildings.dwelling.Flat;
 import buildings.dwelling.hotel.Hotel;
 import buildings.dwelling.hotel.HotelFloor;
+import buildings.interfaces.Floor;
+import buildings.interfaces.Space;
 import buildings.office.Office;
 import buildings.office.OfficeBuilding;
-import buildings.office.OfficeFloor;
-import buildings.threads.*;
 
 import java.io.*;
 
@@ -149,6 +149,12 @@ public class Main {
 		catch (IOException e){
 			e.getMessage();
 		}
+
+		OfficeBuilding of = new OfficeBuilding(3,1,2,3);
+		System.out.println(of.getCountFloors());
+		System.out.println(of.getAreaSpaces());
+		System.out.println(of.getClass().getSimpleName());
+		System.out.println(of.getCountSpaces());
 
 
 	}

@@ -13,21 +13,32 @@ public class SerialClient {
         ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
         ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
 
-        ObjectInputStream in2 = new ObjectInputStream(new FileInputStream("typeSer.bin"));
-        int type = in2.readInt();
-        System.out.println(type);
+        InputStreamReader in2 = new InputStreamReader(new FileInputStream("1.txt"));
+        int type = in2.read()-48;
+
         out.writeInt(type);
         in2.close();
         out.flush();
         Thread.sleep(2000);
 
-        Buildings.serializeBuilding(Buildings.deserialaizeBuilding(new FileInputStream("buildingsSer.bin")),out);
+        Buildings.serializeBuilding(Buildings.readBuilding(new InputStreamReader(new FileInputStream("in.txt"))), out);
         out.flush();
         System.out.println("Building is sent");
         Thread.sleep(3000);
 
         float cost = in.readFloat();
-        System.out.println("Building costs "+ cost);
+        if (cost != -1){
+            System.out.println("Building costs "+ cost);
+            PrintWriter printWriter = new PrintWriter(new FileOutputStream("resultSerial.txt"));
+            printWriter.print(cost);
+            printWriter.close();
+        }
+
+        else {
+            System.out.println("Building is under arrest");
+            PrintWriter printWriter = new PrintWriter(new FileOutputStream("resultSerial.txt"));
+            printWriter.print("Building is under arrest");
+        }
 
         Thread.sleep(1000);
 

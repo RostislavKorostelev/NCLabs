@@ -1,5 +1,7 @@
 package buildings;
 
+import buildings.interfaces.Space;
+
 import java.util.Comparator;
 
 public class RoomsComparator implements Comparator<Space> {

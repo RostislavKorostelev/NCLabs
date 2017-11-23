@@ -1,6 +1,7 @@
 package buildings.net.server.parallel;
 
-import buildings.Building;
+import buildings.exceptions.BuildingUnderArrestException;
+import buildings.interfaces.Building;
 import buildings.Buildings;
 import buildings.dwelling.Dwelling;
 import buildings.dwelling.hotel.Hotel;
@@ -27,8 +28,9 @@ public class NewConnectionSer implements Runnable {
             ObjectOutputStream out = new ObjectOutputStream(socketClient.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(socketClient.getInputStream());
             int type = in.readInt();
+            System.out.println("111");
             Thread.sleep(2000);
-            Building building = Buildings.inputBuilding(in);
+            Building building = Buildings.deserialaizeBuilding(in);
 
 
             out.writeFloat(Cost(type ,building));
@@ -48,25 +50,31 @@ public class NewConnectionSer implements Runnable {
 
     public static float Cost(int type, Building building) {
         double r = Math.random();
-        if (r>0.9){
+        try {
+            if (r > 0.9) {
+                throw new BuildingUnderArrestException("Building is under arrest ");
+            }
+                float res = -1;
 
-            System.out.println("Building is under arrest ");
-        }
-        else{
-            float res = -1;
+                if (type == 0) {
+                    res = 1000 * ((Dwelling) building).getAreaSpaces();
+                    return res;
+                }
+                if (type == 1) {
+                    res = 1500 * ((OfficeBuilding) building).getAreaSpaces();
+                    return res;
+                }
+                if (type == 2) {
+                    res = 2000 * ((Hotel) building).getAreaSpaces();
+                    return res;
+                }
+                System.out.println(res);
 
-            if (type == 0) {
-                res = 1000 * ((Dwelling) building).getAreaSpaces();
-            }
-            if (type == 1) {
-                res = 1500 * ((OfficeBuilding) building).getAreaSpaces();
-            }
-            if (type == 2) {
-                res = 2000 * ((Hotel) building).getAreaSpaces();
-            }
-            System.out.println(res);
-            return res;
+
+            return -1;
         }
-        return -1;
+        catch (BuildingUnderArrestException e){
+            return -1;
+        }
     }
 }

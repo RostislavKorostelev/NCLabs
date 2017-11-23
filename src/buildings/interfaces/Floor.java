@@ -1,5 +1,4 @@
-package buildings;
-import java.util.Iterator;
+package buildings.interfaces;
 
 public interface Floor extends Comparable <Floor>, Iterable<Space> {
     public int getCnt();

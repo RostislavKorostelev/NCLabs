@@ -1,5 +1,7 @@
 package buildings;
 
+import buildings.interfaces.Floor;
+
 import java.util.Comparator;
 
 public class AreaComparator implements Comparator<Floor> {

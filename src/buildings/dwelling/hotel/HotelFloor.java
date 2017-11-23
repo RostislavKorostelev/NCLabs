@@ -1,10 +1,7 @@
 package buildings.dwelling.hotel;
 
-import buildings.Floor;
-import buildings.Space;
-import buildings.SpaceIndexOutOfBoundsException;
+import buildings.interfaces.Space;
 import buildings.dwelling.DwellingFloor;
-import buildings.dwelling.Flat;
 
 public class HotelFloor extends DwellingFloor{
     private static int DEFAULT_STARS = 1;

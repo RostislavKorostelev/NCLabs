@@ -1,6 +1,11 @@
 package buildings.office;
 
 import buildings.*;
+import buildings.exceptions.FloorIndexOutOfBoundsException;
+import buildings.exceptions.SpaceIndexOutOfBoundsException;
+import buildings.interfaces.Building;
+import buildings.interfaces.Floor;
+import buildings.interfaces.Space;
 
 import java.io.Serializable;
 import java.util.Iterator;
@@ -178,7 +183,7 @@ public class OfficeBuilding implements Building, Serializable, Cloneable {
 
 
     public Space getSpace(int n){ //метод получения объекта офиса по его номеру в офисном здании.
-        if  (n<0) throw new SpaceIndexOutOfBoundsException ("n should be positive!");
+        if  (n<0) throw new SpaceIndexOutOfBoundsException("n should be positive!");
         if  (n>this.getCountSpaces()) throw new SpaceIndexOutOfBoundsException ("n not found!");
         int d = 0;
         for (int i = 0; i<this.getCountFloors(); i++)

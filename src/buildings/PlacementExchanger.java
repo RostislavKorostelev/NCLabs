@@ -1,5 +1,11 @@
 package buildings;
 
+import buildings.exceptions.InexchangeableFloorsException;
+import buildings.exceptions.InexchangeableSpacesException;
+import buildings.interfaces.Building;
+import buildings.interfaces.Floor;
+import buildings.interfaces.Space;
+
 public class PlacementExchanger {
     public static boolean spaceExchangeTest(Space space1, Space space2){
         if (space1.getArea()==space2.getArea()&&space1.getRooms()==space2.getRooms())

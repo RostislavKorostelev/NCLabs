@@ -1,5 +1,4 @@
-package buildings;
-import java.util.Iterator;
+package buildings.interfaces;
 
 public interface Building extends Iterable<Floor>{
     public int getCountFloors();

@@ -1,9 +1,9 @@
 package buildings.office;
 
 
-import buildings.InvalidRoomsCountException;
-import buildings.InvalidSpaceAreaException;
-import buildings.Space;
+import buildings.exceptions.InvalidRoomsCountException;
+import buildings.exceptions.InvalidSpaceAreaException;
+import buildings.interfaces.Space;
 
 import java.io.Serializable;
 

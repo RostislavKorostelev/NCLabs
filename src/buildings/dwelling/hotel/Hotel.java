@@ -1,10 +1,8 @@
 package buildings.dwelling.hotel;
 
-import buildings.Building;
-import buildings.Floor;
-import buildings.Space;
+import buildings.interfaces.Floor;
+import buildings.interfaces.Space;
 import buildings.dwelling.Dwelling;
-import buildings.SpaceIndexOutOfBoundsException;
 import buildings.dwelling.Flat;
 
 public class Hotel extends Dwelling {

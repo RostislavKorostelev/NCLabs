@@ -1,5 +1,9 @@
-package buildings;
+package buildings.factories;
 
+import buildings.interfaces.Building;
+import buildings.interfaces.BuildingFactory;
+import buildings.interfaces.Floor;
+import buildings.interfaces.Space;
 import buildings.office.Office;
 import buildings.office.OfficeBuilding;
 import buildings.office.OfficeFloor;
@@ -17,7 +21,7 @@ public class OfficeFactory implements BuildingFactory {
         return new OfficeFloor(spacesCount);
     }
 
-    public Floor createFloor(Space[] spaces){
+    public Floor createFloor(Space...spaces){
         return new OfficeFloor(spaces);
     }
 
@@ -25,7 +29,7 @@ public class OfficeFactory implements BuildingFactory {
         return new OfficeBuilding(floorsCount, spacesCounts);
     }
 
-    public Building createBuilding(Floor[] floors){
+    public Building createBuilding(Floor...floors){
         return new OfficeBuilding(floors);
     }
 
